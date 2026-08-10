@@ -58,12 +58,11 @@
             <!-- HERO SECTION -->
             <section id="hero" class="hero-section">
                 <div class="hero-video-container" id="heroVideoContainer">
-                    <video id="heroVideo" preload="auto" muted playsinline webkit-playsinline>
-                        <source src="public/video/video.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
+                    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="./output/hero-poster.jpg">
+                        <source src="./output/hero-background-loop.mp4" type="video/mp4">
                     </video>
+                    <div class="hero-overlay" aria-hidden="true"></div>
                     <div class="hero-fallback-img"></div>
-                    <div class="hero-overlay"></div>
                 </div>
 
                 <div class="hero-content" id="heroContent">
