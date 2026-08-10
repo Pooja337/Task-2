@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Luxury Skincare & Botanical Radiance</title>
+    <meta name="description"
+        content="Discover AURA luxury skincare. Botanical formulations engineered for timeless elegance and luminous radiance.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo" data-page="home">
+                <span class="logo-mark">AURA</span>
+                <span class="logo-sub">MAISON DE BEAUTÉ</span>
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active" data-page="home">Home</a>
+                <a href="#product" class="nav-link" data-page="product">Products</a>
+                <a href="#about" class="nav-link" data-page="about">About</a>
+                <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="cart-btn" id="cartBtn" aria-label="Shopping Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 01-8 0"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINERS (Multi-Page SPA Views) -->
+    <main>
+
+        <!-- PAGE 1: HOME -->
+        <div id="page-home" class="page-view active">
+            <!-- HERO SECTION -->
+            <section id="hero" class="hero-section">
+                <div class="hero-video-container" id="heroVideoContainer">
+                    <video id="heroVideo" preload="auto" muted playsinline webkit-playsinline>
+                        <source src="video/video.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                    <div class="hero-fallback-img"></div>
+                    <div class="hero-overlay"></div>
+                </div>
+
+                <div class="hero-content" id="heroContent">
+                    <p class="hero-subtitle">BOTANICAL SCIENCE & LUXURY</p>
+                    <h1 class="hero-title">Timeless Radiance.<br>Reimagined.</h1>
+                    <p class="hero-description">Experience high-performance formulas powered by gold-infused botanical
+                        elixirs.</p>
+                    <div class="hero-cta-group">
+                        <a href="#product" class="btn btn-primary" data-page="product">Explore Collection</a>
+                        <a href="#about" class="btn btn-outline" data-page="about">Our Essence</a>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <span class="scroll-text">SCROLL TO DISCOVER</span>
+                    <div class="scroll-line"></div>
+                </div>
+            </section>
+
+            <!-- FEATURED PRODUCTS SECTION -->
+            <section class="section section-featured">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-tag">CURATED FORMULATIONS</span>
+                        <h2 class="section-title">Featured Creations</h2>
+                        <div class="gold-divider"></div>
+                    </div>
+
+                    <div class="product-grid" id="featuredProductGrid">
+                        <!-- Rendered by JS dynamically for consistency -->
+                    </div>
+
+                    <div class="center-cta">
+                        <a href="#product" class="btn btn-secondary" data-page="product">View Entire Collection</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BRAND STORY TEASER SECTION -->
+            <section class="section section-story-teaser">
+                <div class="container grid-2-col">
+                    <div class="story-image-wrap">
+                        <div class="image-frame">
+                            <div class="story-bg-card"></div>
+                            <div class="story-img-placeholder">
+                                <div class="gold-glow"></div>
+                                <span class="placeholder-icon">✦</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <span class="section-tag">THE MAISON PHILOSOPHY</span>
+                        <h2 class="section-title">Where Alchemy Meets Modern Skin Science</h2>
+                        <p class="paragraph">
+                            Founded on the principle of uncompromised purity, AURA blends rare botanical extracts with
+                            clinical micro-particle gold technology. Every drop works in harmony with your skin's
+                            cellular matrix.
+                        </p>
+                        <p class="paragraph">
+                            Our sustainable formulations are ethically harvested from high-altitude Swiss alpine
+                            sanctuaries to deliver deep hydration and cellular renewal.
+                        </p>
+                        <a href="#about" class="btn btn-outline-dark" data-page="about">Learn More About Our
+                            Heritage</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CALL TO ACTION BANNER -->
+            <section class="section section-cta-banner">
+                <div class="cta-banner-content">
+                    <h2 class="cta-banner-title">Begin Your Transformation</h2>
+                    <p class="cta-banner-text">Complimentary luxury sample suite and bespoke consultation included with
+                        every order.</p>
+                    <a href="#product" class="btn btn-gold" data-page="product">Discover The Ritual</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 2: PRODUCT CATALOGUE -->
+        <div id="page-product" class="page-view">
+            <section class="page-header">
+                <div class="container">
+                    <span class="section-tag">FULL COLLECTION</span>
+                    <h1 class="page-title">The Sacred Collection</h1>
+                    <p class="page-subtitle">Formulated to revive, restore, and illuminate every complexion type.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <!-- Filters & Sort -->
+                    <div class="filter-bar">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active" data-filter="all">All Products</button>
+                            <button class="filter-tab" data-filter="serum">Elixirs & Serums</button>
+                            <button class="filter-tab" data-filter="cream">Restorative Creams</button>
+                            <button class="filter-tab" data-filter="cleanser">Cleansers & Toners</button>
+                        </div>
+                    </div>
+
+                    <div class="product-grid" id="fullProductGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 3: ABOUT -->
+        <div id="page-about" class="page-view">
+            <section class="page-header">
+                <div class="container">
+                    <span class="section-tag">HERITAGE & VISION</span>
+                    <h1 class="page-title">Our Sacred Legacy</h1>
+                    <p class="page-subtitle">Pioneering the intersection of pure botanical wisdom and haute skincare
+                        innovation.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="grid-2-col align-center">
+                        <div class="about-text">
+                            <h2 class="section-title">Pure Botanicals. Unrivaled Potency.</h2>
+                            <p class="paragraph">
+                                At AURA, we believe that true luxury lies in conscious crafting and visible skin
+                                transformation. Each formulation is synthesized in micro-batches in our Geneva
+                                laboratory to preserve ingredient integrity and bioactive potency.
+                            </p>
+                            <p class="paragraph">
+                                From wild-harvested Edelweiss to 24-karat bio-available colloidal gold, every component
+                                serves a distinct cellular purpose—strengthening the lipid barrier while imparting an
+                                immediate candlelight glow.
+                            </p>
+                        </div>
+                        <div class="about-visual-card">
+                            <div class="gold-border-box">
+                                <div class="metric-number">99.8%</div>
+                                <div class="metric-label">Organic Bio-active Ingredients</div>
+                                <div class="metric-divider"></div>
+                                <div class="metric-number">100%</div>
+                                <div class="metric-label">Cruelty Free & Carbon Neutral</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section bg-light-neutral">
+                <div class="container text-center">
+                    <span class="section-tag">THREE PILLARS</span>
+                    <h2 class="section-title">The AURA Standard</h2>
+                    <div class="pillars-grid">
+                        <div class="pillar-card">
+                            <div class="pillar-icon">Ⅰ</div>
+                            <h3>Ethical Sourcing</h3>
+                            <p>Hand-harvested botanicals from sustainable fair-trade sanctuaries across Alpine regions.
+                            </p>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-icon">Ⅱ</div>
+                            <h3>Biocompatible Science</h3>
+                            <p>Cold-pressed extraction preserves bio-nutrients for maximum dermal absorption.</p>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-icon">Ⅲ</div>
+                            <h3>Sensory Elegance</h3>
+                            <p>Silk-touch textures and subtle natural botanical aromatics tailored for mindful rituals.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 4: CONTACT -->
+        <div id="page-contact" class="page-view">
+            <section class="page-header">
+                <div class="container">
+                    <span class="section-tag">CONCIERGE & SUPPORT</span>
+                    <h1 class="page-title">Connect With Us</h1>
+                    <p class="page-subtitle">Our skincare specialists are available to assist with personalized
+                        recommendations.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container grid-2-col">
+                    <div class="contact-info">
+                        <h2 class="section-title">Maison AURA Concierge</h2>
+                        <p class="paragraph">For questions regarding orders, ingredient inquiries, or bespoke skin
+                            consultations, please reach out via our contact channels.</p>
+
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-label">Flagship Boutique</span>
+                                <span class="contact-val">740 Rue du Rhône, 1204 Geneva, Switzerland</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Concierge Email</span>
+                                <span class="contact-val">concierge@aura-maison.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Client Services</span>
+                                <span class="contact-val">+41 22 819 9000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-card">
+                        <form id="contactForm" class="contact-form" novalidate>
+                            <h3 class="form-title">Send a Message</h3>
+
+                            <div class="form-group">
+                                <label for="contactName">Full Name *</label>
+                                <input type="text" id="contactName" name="name" placeholder="e.g. Lady Eleanor Vance"
+                                    required>
+                                <span class="error-msg" id="nameError">Please enter your full name</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactEmail">Email Address *</label>
+                                <input type="email" id="contactEmail" name="email" placeholder="e.g. eleanor@domain.com"
+                                    required>
+                                <span class="error-msg" id="emailError">Please enter a valid email address</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactMessage">Message *</label>
+                                <textarea id="contactMessage" name="message" rows="5"
+                                    placeholder="How may our concierge assist you?" required></textarea>
+                                <span class="error-msg" id="messageError">Please type your message</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-gold btn-full">Submit Inquiry</button>
+                        </form>
+
+                        <div id="contactSuccess" class="form-success-alert hidden">
+                            <div class="alert-icon">✓</div>
+                            <h4>Thank You</h4>
+                            <p>Your message has been received. An AURA skincare ambassador will respond within 24 hours.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- CART SIDEBAR MODAL -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-drawer">
+            <div class="cart-header">
+                <h3>Your Selection</h3>
+                <button class="close-cart" id="closeCart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItemsList">
+                <p class="empty-cart-msg">Your shopping bag is empty.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total-row">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal">$0.00</span>
+                </div>
+                <button class="btn btn-gold btn-full" id="checkoutBtn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast-notification"></div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="logo-mark">AURA</span>
+                    <span class="logo-sub">MAISON DE BEAUTÉ</span>
+                    <p class="footer-tagline">Haute botanical skincare formulated for timeless radiance.</p>
+                </div>
+
+                <div class="footer-links-group">
+                    <div class="footer-col">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="#home" data-page="home">Home</a></li>
+                            <li><a href="#product" data-page="product">Products</a></li>
+                            <li><a href="#about" data-page="about">About Us</a></li>
+                            <li><a href="#contact" data-page="contact">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Collections</h4>
+                        <ul>
+                            <li><a href="#product" data-page="product">Gold Elixirs</a></li>
+                            <li><a href="#product" data-page="product">Cellular Creams</a></li>
+                            <li><a href="#product" data-page="product">Swiss Alpine Nectars</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Social</h4>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Instagram">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"
+                                    viewBox="0 0 24 24">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Pinterest">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"
+                                    viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 20l4-9 2 4"></path>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Facebook">
+                                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"
+                                    viewBox="0 0 24 24">
+                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 AURA Maison de Beauté. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Shipping & Returns</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
