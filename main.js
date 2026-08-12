@@ -119,9 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Restore cart count on load
     updateCartUI();
 
+    // Lazy load videos after page finishes loading to reduce initial page load time
+    window.addEventListener('load', () => {
+        lazyLoadVideos();
+    });
+
     // Check Window Resize for Mobile State
     window.addEventListener('resize', () => {
         state.isMobile = window.innerWidth <= 768;
+        if (!state.isMobile) {
+            lazyLoadVideos();
+        }
     });
 });
 
@@ -200,6 +208,33 @@ function handleNavbarScroll() {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
+    }
+}
+
+function lazyLoadVideos() {
+    // Only load the hero video on larger viewports to save significant bandwidth/CPU on mobile
+    if (heroVideo && window.innerWidth > 768) {
+        const src = heroVideo.getAttribute('data-src');
+        if (src && !heroVideo.querySelector('source')) {
+            const source = document.createElement('source');
+            source.src = src;
+            source.type = 'video/mp4';
+            heroVideo.appendChild(source);
+            heroVideo.load();
+        }
+    }
+
+    // Load story video
+    const storyVideo = document.getElementById('storyVideo');
+    if (storyVideo) {
+        const src = storyVideo.getAttribute('data-src');
+        if (src && !storyVideo.querySelector('source')) {
+            const source = document.createElement('source');
+            source.src = src;
+            source.type = 'video/mp4';
+            storyVideo.appendChild(source);
+            storyVideo.load();
+        }
     }
 }
 

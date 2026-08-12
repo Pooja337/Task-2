@@ -67,9 +67,8 @@
             <!-- HERO SECTION -->
             <section id="hero" class="hero-section">
                 <div class="hero-video-container" id="heroVideoContainer">
-                    <video class="hero-video" autoplay muted loop playsinline preload="auto"
-                        poster="./public/video/video.mp4">
-                        <source src="./public/video/video.mp4" type="video/mp4">
+                    <video id="heroVideo" class="hero-video" autoplay muted loop playsinline preload="none"
+                        poster="./public/video/video.mp4" data-src="./public/video/video.mp4">
                     </video>
                     <div class="hero-overlay" aria-hidden="true"></div>
                     <div class="hero-fallback-img"></div>
@@ -119,8 +118,8 @@
                             <div class="story-bg-card"></div>
                             <div class="story-img-placeholder">
                                 <div class="gold-glow"></div>
-                                <video class="story-video" autoplay muted loop playsinline preload="auto">
-                                    <source src="./public/video/1 1.mp4" type="video/mp4">
+                                <video id="storyVideo" class="story-video" autoplay muted loop playsinline preload="none"
+                                    data-src="./public/video/1 1.mp4">
                                 </video>
                             </div>
                         </div>
