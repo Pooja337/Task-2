@@ -31,6 +31,7 @@
                 <a href="#product" class="nav-link" data-page="product">Products</a>
                 <a href="#about" class="nav-link" data-page="about">About</a>
                 <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+                <a href="#cart" class="nav-link" data-page="cart">Cart</a>
             </nav>
 
             <div class="nav-actions">
@@ -110,7 +111,10 @@
                             <div class="story-bg-card"></div>
                             <div class="story-img-placeholder">
                                 <div class="gold-glow"></div>
-                                <span class="placeholder-icon">✦</span>
+                                <span class="placeholder-icon"><video class="hero-video" autoplay muted loop playsinline
+                                        preload="auto" poster="./public/video/1 1.mp4">
+                                        <source src="./public/video/1 1.mp4" type="video/mp4">
+                                    </video></span>
                             </div>
                         </div>
                     </div>
@@ -312,6 +316,23 @@
             </section>
         </div>
 
+        <!-- PAGE 5: CART PAGE -->
+        <div id="page-cart" class="page-view">
+            <section class="page-header">
+                <div class="container">
+                    <span class="section-tag">YOUR EDIT</span>
+                    <h1 class="page-title">Shopping Edit</h1>
+                    <p class="page-subtitle">Review your selected formulations and prepare for checkout.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container" id="cartPageBody">
+                    <!-- Populated dynamically by main.js -->
+                </div>
+            </section>
+        </div>
+
     </main>
 
     <!-- CART SIDEBAR MODAL -->
@@ -319,12 +340,25 @@
         <div class="cart-overlay" id="cartOverlay"></div>
         <div class="cart-drawer">
             <div class="cart-header">
-                <h3>Your Selection</h3>
-                <button class="close-cart" id="closeCart">&times;</button>
+                <h3>Your Bag</h3>
+                <button class="close-cart" id="closeCart" aria-label="Close bag">&times;</button>
             </div>
+            
+            <!-- Shipping threshold goal bar -->
+            <div class="cart-shipping-bar" id="cartShippingBar">
+                <span class="shipping-msg" id="shippingMsg">You're $100.00 away from free shipping!</span>
+                <div class="shipping-progress"><div class="shipping-progress-fill" id="shippingProgressFill" style="width: 0%"></div></div>
+            </div>
+
             <div class="cart-items" id="cartItemsList">
-                <p class="empty-cart-msg">Your shopping bag is empty.</p>
+                <div class="cart-empty-state" id="cartEmptyState">
+                    <div class="cart-empty-icon">👜</div>
+                    <p class="cart-empty-title">Your bag is empty — let's fix that</p>
+                    <button class="btn btn-gold" id="cartEmptyContinueBtn">Continue Shopping</button>
+                </div>
+                <div class="cart-items-container" id="cartItemsContainer"></div>
             </div>
+            
             <div class="cart-footer">
                 <div class="cart-total-row">
                     <span>Subtotal</span>
