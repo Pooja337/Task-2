@@ -175,6 +175,13 @@ function switchPage(pageId) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Cart page must render fresh on navigation — updateCartUI() only
+    // re-renders it when it's already the active page, so a nav click
+    // into the cart otherwise shows stale/empty content.
+    if (pageId === 'cart') {
+        renderCartPage();
+    }
+
     // Update Nav Active State
     links.forEach(link => {
         if (link.getAttribute('data-page') === pageId) {
@@ -630,6 +637,8 @@ function updateCartUI() {
 function renderCartPage() {
     const cartPageBody = document.getElementById('cartPageBody');
     if (!cartPageBody) return;
+
+    console.log('renderCartPage: state.cart =', state.cart);
 
     const subtotal = calculateSubtotal();
     const totalCount = state.cart.reduce((s, i) => s + (i.qty || 1), 0);
