@@ -68,7 +68,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-img {
+/* Responsive media: images, videos and embeds never exceed their container,
+   preventing the horizontal overflow that fixed-size media causes on small screens */
+img,
+video,
+iframe {
     max-width: 100%;
     height: auto;
     display: block;
@@ -92,7 +96,10 @@ textarea {
     width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 0 2rem;
+    /* Fluid gutter: 1rem on a 320px phone, scales up to the original 2rem
+       once the viewport is wide enough — removes the need for a breakpoint
+       just to shrink side padding on small screens. */
+    padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
 .grid-2-col {
@@ -149,10 +156,12 @@ textarea {
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: 2.8rem;
+    /* Fluid heading: scales continuously between mobile and desktop instead
+       of jumping at a single breakpoint, so it reads well at every width. */
+    font-size: clamp(1.75rem, 1.35rem + 2vw, 2.8rem);
     font-weight: 300;
     letter-spacing: 0.5px;
-    line-height: 1.2;
+    line-height: 1.25;
 }
 
 .bg-light-neutral .section-title {
@@ -168,10 +177,10 @@ textarea {
 
 .paragraph {
     color: var(--color-text-muted);
-    font-size: 1.05rem;
+    font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
     margin-bottom: 1.5rem;
     font-weight: 300;
-    line-height: 1.8;
+    line-height: 1.75;
 }
 
 .bg-light-neutral .paragraph {
@@ -180,7 +189,9 @@ textarea {
 
 /* Page Header for Inner Pages */
 .page-header {
-    padding: 10rem 0 4rem 0;
+    /* Fluid top padding: fixed navbar clearance stays constant, but the
+       generous 10rem desktop breathing room shrinks on short mobile viewports */
+    padding: clamp(6.5rem, 5rem + 6vw, 10rem) 0 clamp(2.5rem, 2rem + 2vw, 4rem) 0;
     text-align: center;
     background: linear-gradient(180deg, #050505 0%, var(--color-bg-dark) 100%);
     border-bottom: 1px solid var(--color-border-dark);
@@ -188,14 +199,15 @@ textarea {
 
 .page-title {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: clamp(2.1rem, 1.5rem + 3vw, 3.5rem);
     font-weight: 300;
     margin-bottom: 0.75rem;
+    line-height: 1.15;
 }
 
 .page-subtitle {
     color: var(--color-text-muted);
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.1rem);
     max-width: 600px;
     margin: 0 auto;
     font-weight: 300;
@@ -228,7 +240,7 @@ textarea {
     max-width: var(--max-width);
     height: 100%;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 clamp(1rem, 4vw, 2rem);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -310,9 +322,14 @@ textarea {
     color: var(--color-text-light);
     cursor: pointer;
     position: relative;
+    /* Padding expands the tappable hit area to the 44px touch-target
+       minimum without growing the visible icon */
     padding: 0.4rem;
+    min-width: 44px;
+    min-height: 44px;
     display: flex;
     align-items: center;
+    justify-content: center;
     transition: var(--transition-standard);
 }
 
@@ -342,15 +359,19 @@ textarea {
     background: none;
     border: none;
     cursor: pointer;
-    width: 24px;
-    height: 20px;
+    /* 44px min touch target (WCAG/Apple/Android guidance) wrapping the
+       smaller 24x20 bar icon, centered via flex so the icon stays put */
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 5px;
 }
 
 .mobile-toggle span {
     display: block;
-    width: 100%;
+    width: 24px;
     height: 2px;
     background-color: var(--color-text-light);
     transition: var(--transition-standard);
@@ -362,6 +383,10 @@ textarea {
 .hero-section {
     position: relative;
     height: 100vh;
+    /* dvh accounts for mobile browser chrome (address bar) showing/hiding,
+       so the hero doesn't jump or clip content as the viewport resizes.
+       Falls back to 100vh above on browsers that don't support dvh. */
+    height: 100dvh;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -416,12 +441,12 @@ textarea {
     z-index: 10;
     text-align: center;
     max-width: 800px;
-    padding: 0 2rem;
+    padding: 0 clamp(1rem, 5vw, 2rem);
     transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
 
 .hero-subtitle {
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem);
     letter-spacing: 4px;
     color: var(--color-gold-primary);
     margin-bottom: 1rem;
@@ -430,16 +455,18 @@ textarea {
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: 4.5rem;
+    /* Fluid title replaces the old fixed-size + breakpoint-override pair
+       (4.5rem base, 3.2rem @992px, 2.5rem @768px) with one continuous scale */
+    font-size: clamp(2rem, 1.3rem + 4vw, 4.5rem);
     font-weight: 300;
-    line-height: 1.1;
+    line-height: 1.15;
     margin-bottom: 1.5rem;
     letter-spacing: -0.5px;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
 }
 
 .hero-description {
-    font-size: 1.15rem;
+    font-size: clamp(0.95rem, 0.85rem + 0.5vw, 1.15rem);
     color: var(--color-text-muted);
     margin-bottom: 2.5rem;
     font-weight: 300;
@@ -447,7 +474,8 @@ textarea {
 
 .hero-cta-group {
     display: flex;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1.25rem 1.5rem;
     justify-content: center;
 }
 
@@ -507,7 +535,10 @@ textarea {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.95rem 2.2rem;
+    padding: 0.95rem clamp(1.5rem, 4vw, 2.2rem);
+    /* min-height guarantees the 44px touch target on mobile even at the
+       smallest padding value, without affecting desktop rendering */
+    min-height: 44px;
     font-size: 0.8rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -583,8 +614,12 @@ textarea {
    -------------------------------------------------------------------------- */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2.5rem;
+    /* min(280px, 100%) lets the column shrink to fit viewports narrower
+       than 280px + gutters (e.g. 320px phones) instead of forcing
+       horizontal overflow, while still preferring 280px columns when
+       there's room */
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .product-card {
@@ -700,6 +735,7 @@ textarea {
 .card-qty-stepper {
     width: 100%;
     padding: 0.78rem 1rem;
+    min-height: 44px;
     background: transparent;
     border: 1px solid var(--color-border-dark);
     color: var(--color-text-light);
@@ -735,8 +771,11 @@ textarea {
     color: var(--color-gold-primary);
     cursor: pointer;
     font-weight: 600;
-    width: 32px;
-    height: 32px;
+    /* 44px tall tap target (the stepper's own 44px min-height covers this
+       vertically); width stays compact since it sits beside the value */
+    width: 44px;
+    height: 100%;
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -787,6 +826,7 @@ textarea {
     border: 1px solid var(--color-border-dark);
     color: var(--color-text-muted);
     padding: 0.6rem 1.5rem;
+    min-height: 44px;
     font-size: 0.75rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -856,6 +896,15 @@ textarea {
     z-index: 2;
 }
 
+.story-video {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 /* About Page Visual Card */
 .about-visual-card {
     padding: 2rem;
@@ -863,14 +912,14 @@ textarea {
 
 .gold-border-box {
     border: 1px solid var(--color-border-dark);
-    padding: 3rem 2rem;
+    padding: clamp(2rem, 1.5rem + 2vw, 3rem) clamp(1.25rem, 3vw, 2rem);
     text-align: center;
     background: var(--color-surface-card);
 }
 
 .metric-number {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: clamp(2.4rem, 1.9rem + 2vw, 3.5rem);
     color: var(--color-gold-primary);
     line-height: 1;
 }
@@ -932,7 +981,7 @@ textarea {
    -------------------------------------------------------------------------- */
 .section-cta-banner {
     background: linear-gradient(135deg, #1A1713 0%, #2A231A 50%, #0F0E0D 100%);
-    padding: 7rem 2rem;
+    padding: clamp(4rem, 3rem + 4vw, 7rem) clamp(1rem, 4vw, 2rem);
     text-align: center;
     border-top: 1px solid var(--color-border-dark);
     border-bottom: 1px solid var(--color-border-dark);
@@ -949,14 +998,15 @@ textarea {
 
 .cta-banner-title {
     font-family: var(--font-heading);
-    font-size: 3.2rem;
+    font-size: clamp(1.9rem, 1.4rem + 3vw, 3.2rem);
     font-weight: 300;
     margin-bottom: 1rem;
+    line-height: 1.15;
 }
 
 .cta-banner-text {
     color: var(--color-text-muted);
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.1rem);
     margin-bottom: 2.5rem;
     font-weight: 300;
 }
@@ -991,14 +1041,14 @@ textarea {
 
 .contact-form-card {
     background: var(--color-surface-card);
-    padding: 3rem;
+    padding: clamp(1.5rem, 1rem + 3vw, 3rem);
     border: 1px solid var(--color-border-dark);
     position: relative;
 }
 
 .form-title {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
     font-weight: 300;
     margin-bottom: 2rem;
 }
@@ -1021,6 +1071,10 @@ textarea {
 .form-group textarea {
     width: 100%;
     padding: 0.9rem 1rem;
+    /* 44px min height keeps text inputs touch-friendly; textarea's own
+       rows="5" already exceeds this so it's unaffected */
+    min-height: 44px;
+    font-size: 1rem;
     background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--color-text-light);
@@ -1163,7 +1217,7 @@ textarea {
 }
 
 .cart-header {
-    padding: 1.5rem 2rem;
+    padding: 1.5rem clamp(1.25rem, 4vw, 2rem);
     border-bottom: 1px solid var(--color-border-dark);
     display: flex;
     justify-content: space-between;
@@ -1183,10 +1237,16 @@ textarea {
     font-size: 2rem;
     cursor: pointer;
     line-height: 1;
+    /* Expand hit area to 44px without changing the visible glyph size */
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cart-shipping-bar {
-    padding: 1rem 2rem;
+    padding: 1rem clamp(1.25rem, 4vw, 2rem);
     background: rgba(212, 175, 55, 0.05);
     border-bottom: 1px solid rgba(212, 175, 55, 0.1);
     font-size: 0.8rem;
@@ -1217,7 +1277,7 @@ textarea {
 }
 
 .cart-items {
-    padding: 2rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
     flex-grow: 1;
     overflow-y: auto;
     position: relative;
@@ -1303,7 +1363,7 @@ textarea {
 }
 
 .cart-footer {
-    padding: 2rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
     border-top: 1px solid var(--color-border-dark);
     background: var(--color-surface-dark);
     position: sticky;
@@ -1321,11 +1381,16 @@ textarea {
 
 .toast-notification {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: clamp(1rem, 4vw, 2rem);
+    right: clamp(1rem, 4vw, 2rem);
+    /* Cap width and allow left-edge shrinkage so a long message never
+       forces horizontal overflow on narrow phones */
+    left: clamp(1rem, 4vw, 2rem);
+    max-width: 380px;
+    margin-left: auto;
     background: var(--color-gold-gradient);
     color: var(--color-bg-dark);
-    padding: 1rem 2rem;
+    padding: 1rem clamp(1.25rem, 4vw, 2rem);
     font-weight: 600;
     font-size: 0.85rem;
     letter-spacing: 1px;
@@ -1347,14 +1412,14 @@ textarea {
 .site-footer {
     background-color: #080808;
     border-top: 1px solid var(--color-border-dark);
-    padding: 5rem 0 2rem 0;
+    padding: clamp(3rem, 2rem + 4vw, 5rem) 0 2rem 0;
 }
 
 .footer-top {
     display: grid;
     grid-template-columns: 1.5fr 3fr;
-    gap: 4rem;
-    margin-bottom: 4rem;
+    gap: clamp(2rem, 3vw, 4rem);
+    margin-bottom: clamp(2.5rem, 2rem + 2vw, 4rem);
 }
 
 .footer-brand .footer-tagline {
@@ -1399,12 +1464,15 @@ textarea {
 
 .social-icons {
     display: flex;
-    gap: 1.2rem;
+    gap: 0.75rem;
 }
 
 .social-icons a {
     color: var(--color-text-muted);
     transition: var(--transition-standard);
+    /* Padding brings the small SVG icon up to a 44px touch target */
+    padding: 0.85rem;
+    display: inline-flex;
 }
 
 .social-icons a:hover {
@@ -1424,7 +1492,8 @@ textarea {
 
 .footer-legal {
     display: flex;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
 }
 
 .footer-legal a:hover {
@@ -1433,15 +1502,27 @@ textarea {
 
 /* --------------------------------------------------------------------------
    12. RESPONSIVE DESIGN (MEDIA QUERIES)
+
+   Layout, typography scale (clamp()) and touch targets are handled fluidly
+   in the base rules above and adapt continuously at every width — that's
+   the "mobile-first" part: base rules already work down to a 320px phone.
+   The breakpoints below are reserved for STRUCTURAL changes that can't be
+   done with fluid units alone: switching grid-template-columns, showing/
+   hiding the hamburger nav, swapping the hero video for a static fallback,
+   and reflowing flex direction. Verified against 320 / 375 / 425 / 768 /
+   1024 / 1440px reference widths.
    -------------------------------------------------------------------------- */
+
+/* ---- ≤992px: tablets — collapse two-column layouts to one column ---- */
 @media (max-width: 992px) {
     .grid-2-col {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
 
+    /* 2-up on tablet instead of jumping straight from 3 columns to 1 */
     .pillars-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .footer-top {
@@ -1449,9 +1530,7 @@ textarea {
         gap: 3rem;
     }
 
-    .hero-title {
-        font-size: 3.2rem;
-    }
+    /* .hero-title font-size is fluid via clamp() — no override needed here */
 
     .story-img-placeholder {
         margin-left: 0;
@@ -1463,6 +1542,7 @@ textarea {
     }
 }
 
+/* ---- ≤768px: phones/small tablets — nav becomes a hamburger drawer ---- */
 @media (max-width: 768px) {
 
     /* Mobile Hero Fallback */
@@ -1480,11 +1560,14 @@ textarea {
         top: var(--navbar-height);
         left: 0;
         width: 100%;
+        max-height: calc(100dvh - var(--navbar-height));
+        overflow-y: auto;
         background-color: var(--color-bg-dark);
         border-bottom: 1px solid var(--color-border-dark);
         flex-direction: column;
-        padding: 2rem;
-        gap: 1.5rem;
+        align-items: stretch;
+        padding: 1.5rem clamp(1.25rem, 5vw, 2rem);
+        gap: 0.5rem;
         transform: translateY(-150%);
         transition: transform 0.4s var(--ease-smooth);
         z-index: 999;
@@ -1494,17 +1577,32 @@ textarea {
         transform: translateY(0);
     }
 
+    /* Full-width, 44px-tall rows are far easier to tap than the inline
+       desktop nav links once the menu becomes a stacked drawer */
+    .nav-menu .nav-link {
+        padding: 0.85rem 0;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
     .mobile-toggle {
         display: flex;
     }
 
-    .hero-title {
-        font-size: 2.5rem;
-    }
+    /* .hero-title font-size is fluid via clamp() — no override needed here */
 
     .hero-cta-group {
         flex-direction: column;
         gap: 1rem;
+    }
+
+    .hero-cta-group .btn {
+        width: 100%;
+    }
+
+    .pillars-grid {
+        grid-template-columns: 1fr;
     }
 
     .footer-links-group {
@@ -1516,6 +1614,54 @@ textarea {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
+    }
+}
+
+/* ---- ≤480px: small phones (covers the 320 / 375 / 425 reference widths)
+   Fluid clamp() sizing already scales continuously down to 320px; this
+   block only tightens a few spots that still look cramped at that extreme
+   (nav logo, cart page thumbnails) rather than overflowing anything. ---- */
+@media (max-width: 480px) {
+    .logo-mark {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    .logo-sub {
+        letter-spacing: 2px;
+    }
+
+    .cart-page-item-img-wrap {
+        width: 64px;
+        height: 80px;
+    }
+}
+
+/* ---- ≥1024px: tablet-landscape / small laptop — restore comfortable
+   desktop spacing a touch earlier than the 1280px container max-width ---- */
+@media (min-width: 1024px) {
+    .section {
+        padding: 6.5rem 0;
+    }
+
+    .product-grid {
+        gap: 2.75rem;
+    }
+}
+
+/* ---- ≥1440px: large desktop — content gets a little more breathing
+   room instead of just sitting centered at the same 1280px cap ---- */
+@media (min-width: 1440px) {
+    :root {
+        --max-width: 1360px;
+    }
+
+    .section {
+        padding: 7.5rem 0;
+    }
+
+    .hero-content {
+        max-width: 880px;
     }
 }
 
@@ -1539,7 +1685,7 @@ textarea {
 
 .cart-page-empty-headline {
     font-family: var(--font-heading);
-    font-size: 2.2rem;
+    font-size: clamp(1.6rem, 1.3rem + 1.5vw, 2.2rem);
     font-weight: 300;
     margin-bottom: 0.75rem;
 }
@@ -1681,8 +1827,9 @@ textarea {
     background: none;
     border: none;
     color: var(--color-text-light);
-    width: 32px;
-    height: 32px;
+    /* 44px touch target on the dedicated cart page's primary stepper */
+    width: 44px;
+    height: 44px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1714,9 +1861,19 @@ textarea {
     background-color: var(--color-surface-card);
     border: 1px solid var(--color-border-dark);
     border-radius: 12px;
-    padding: 2.5rem;
+    padding: clamp(1.5rem, 1rem + 3vw, 2.5rem);
+    /* Sticky only makes sense in the two-column desktop layout, where the
+       summary sits beside a taller scrolling item list. Once
+       .cart-page-layout stacks to one column at ≤992px it would otherwise
+       pin the summary mid-page and overlap content beneath it. */
     position: sticky;
     top: 110px;
+}
+
+@media (max-width: 992px) {
+    .cart-page-summary {
+        position: static;
+    }
 }
 
 .cart-page-summary-title {
@@ -1791,9 +1948,12 @@ textarea {
     margin-top: 0.5rem;
 }
 
+/* Smaller, deliberately compact variant for the quick-access drawer list
+   (dense rows, secondary panel) — the primary stepper on the dedicated
+   cart page above keeps the full 44px touch target */
 .cart-item-qty-row .cart-qty-btn {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
 }
 
 .cart-item-qty-val {

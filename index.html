@@ -111,10 +111,9 @@
                             <div class="story-bg-card"></div>
                             <div class="story-img-placeholder">
                                 <div class="gold-glow"></div>
-                                <span class="placeholder-icon"><video class="hero-video" autoplay muted loop playsinline
-                                        preload="auto" poster="./public/video/1 1.mp4">
-                                        <source src="./public/video/1 1.mp4" type="video/mp4">
-                                    </video></span>
+                                <video class="story-video" autoplay muted loop playsinline preload="auto">
+                                    <source src="./public/video/1 1.mp4" type="video/mp4">
+                                </video>
                             </div>
                         </div>
                     </div>
@@ -343,11 +342,13 @@
                 <h3>Your Bag</h3>
                 <button class="close-cart" id="closeCart" aria-label="Close bag">&times;</button>
             </div>
-            
+
             <!-- Shipping threshold goal bar -->
             <div class="cart-shipping-bar" id="cartShippingBar">
                 <span class="shipping-msg" id="shippingMsg">You're $100.00 away from free shipping!</span>
-                <div class="shipping-progress"><div class="shipping-progress-fill" id="shippingProgressFill" style="width: 0%"></div></div>
+                <div class="shipping-progress">
+                    <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 0%"></div>
+                </div>
             </div>
 
             <div class="cart-items" id="cartItemsList">
@@ -358,7 +359,7 @@
                 </div>
                 <div class="cart-items-container" id="cartItemsContainer"></div>
             </div>
-            
+
             <div class="cart-footer">
                 <div class="cart-total-row">
                     <span>Subtotal</span>
