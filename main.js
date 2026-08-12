@@ -307,9 +307,9 @@ function renderProducts() {
     const featuredGrid = document.getElementById('featuredProductGrid');
     const fullGrid = document.getElementById('fullProductGrid');
 
-    // 1. Render Featured Products (First 3 — uses the specified Unsplash images)
+    // 1. Render Featured Products (First 4 — uses the specified Unsplash images)
     if (featuredGrid) {
-        const featuredList = PRODUCTS.slice(0, 3);
+        const featuredList = PRODUCTS.slice(0, 4);
         featuredGrid.innerHTML = featuredList.map(product => createProductCardHTML(product)).join('');
     }
 

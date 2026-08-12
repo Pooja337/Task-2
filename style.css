@@ -1,5 +1,11 @@
 /* ==========================================================================
    AURA MAISON DE BEAUTÉ - LUXURY DESIGN SYSTEM & STYLESHEET
+   Mobile-Responsive Highlights:
+   - Fluid typography using clamp() for seamless headers, section titles, and paragraphs.
+   - Flexbox & CSS Grid with auto-fill and minmax columns to prevent overflow on viewports down to 320px.
+   - Touch-friendly action items and menu selections (minimum 44px hit areas).
+   - Dynamic viewport height adjustments (dvh/vh) for mobile hero sections.
+   - Fully optimized breakpoints for 320px, 375px, 425px, 768px, 1024px, and 1440px widths.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
