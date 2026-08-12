@@ -1551,15 +1551,9 @@ textarea {
 /* ---- ≤768px: phones/small tablets — nav becomes a hamburger drawer ---- */
 @media (max-width: 768px) {
 
-    /* Mobile Hero Fallback */
-    .hero-video-container video {
-        display: none;
-        /* Mobile fallback image active for performance */
-    }
 
-    .hero-fallback-img {
-        display: block;
-    }
+
+
 
     .nav-menu {
         position: fixed;
@@ -1733,11 +1727,7 @@ textarea {
     color: var(--color-text-muted);
 }
 
-@media (max-width: 600px) {
-    .cart-page-items-header {
-        display: none;
-    }
-}
+
 
 .cart-page-item {
     display: grid;
