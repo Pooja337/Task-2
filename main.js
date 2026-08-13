@@ -112,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Components
     initNavigation();
     initHeroLoopVideo();
+    initLazyVideos();
     renderProducts();
     initContactForm();
     initCartModal();
@@ -298,6 +299,44 @@ function initHeroLoopVideo() {
             heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
         }
     }, { passive: true });
+}
+
+/* --------------------------------------------------------------------------
+   2b. LAZY-LOADED VIDEOS (below-the-fold)
+   Videos marked .lazy-video keep preload="none" and their <source> src in
+   data-src until they scroll into the viewport, so they don't compete with
+   the hero video for bandwidth on page load.
+   -------------------------------------------------------------------------- */
+function initLazyVideos() {
+    const lazyVideos = document.querySelectorAll('video.lazy-video');
+    if (!lazyVideos.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+        lazyVideos.forEach(loadLazyVideo);
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                loadLazyVideo(entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '200px 0px', threshold: 0.1 });
+
+    lazyVideos.forEach(video => observer.observe(video));
+}
+
+function loadLazyVideo(video) {
+    const source = video.querySelector('source[data-src]');
+    if (source) {
+        source.src = source.dataset.src;
+        source.removeAttribute('data-src');
+    }
+    video.preload = 'auto';
+    video.load();
+    video.play().catch(() => { /* autoplay may be blocked — user can still play manually */ });
 }
 
 /* --------------------------------------------------------------------------
